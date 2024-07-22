@@ -1,0 +1,17 @@
+.vscode
+
+# compiled binaries
+*.o
+*/*.o
+*.a
+*/*.a
+
+# cmake files
+CMakeFiles/
+*/CMakeFiles/
+CMakeCache.txt
+*/CMakeCache.txt
+cmake_install.cmake
+*/cmake_install.cmake
+Makefile
+*/Makefile
