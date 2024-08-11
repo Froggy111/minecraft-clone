@@ -1,12 +1,6 @@
-// Compile time configurations. These are mainly to 
+// Compile time configurations. These are mainly to optimise or set default values.
 
-/**
- * Compile time logger config.
- * Undefine the logger levels to suppress logging to reduce overhead
- */
-#define LOGGER_ENABLE_DEBUG
-#define LOGGER_ENABLE_INFO
-#define LOGGER_ENABLE_NOTICE
-#define LOGGER_ENABLE_WARNING
-#define LOGGER_ENABLE_ERROR
-#define LOGGER_ENABLE_FATAL
+#include "game_engine/src/lib/defines/configs/logger_conf.hpp"
+#include "game_engine/src/lib/defines/configs/shader_conf.hpp"
+#include "game_engine/src/lib/defines/configs/error_handling_conf.hpp"
+#include "game_engine/src/lib/defines/configs/glew_conf.hpp"

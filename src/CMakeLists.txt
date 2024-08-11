@@ -2,10 +2,11 @@ cmake_minimum_required(VERSION 3.2)
 project(
   Minecraft
   VERSION 0.0
-  LANGUAGES CXX
 )
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
+
+include_directories("./")
 
 # DISPLAY LIBRARIES
 # OpenGL
@@ -26,6 +27,9 @@ message(STATUS "GLEW included at ${GLEW_INCLUDE_DIR}")
 find_package(SDL2 REQUIRED)
 include_directories(${PROJECT_NAME} PUBLIC ${SDL2_INCLUDE_DIRS})
 message(STATUS "SDL2 included at ${SDL2_INCLUDE_DIRS}")
+# GLFW
+find_package(glfw3 REQUIRED)
+link_libraries(glfw)
 
 set(EXTERNAL_LIBS ${OPENGL_LIBRARIES} ${GLM_LIBRARIES} ${GLEW_LIBRARIES} ${SDL2_LIBRARIES})
 link_libraries(${EXTERNAL_LIBS})
