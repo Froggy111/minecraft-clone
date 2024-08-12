@@ -48,18 +48,18 @@ namespace shaders {
       this->shader.use();
       return;
     }
-    inline u32 vert_shader_ids(void) {
+    inline types::u32 vert_shader_ids(void) {
       return this->shader.vert_shader_ids();
     }
-    inline u32 frag_shader_ids(void) {
+    inline types::u32 frag_shader_ids(void) {
       return this->shader.frag_shader_ids();
     }
-    inline u32 program_id(void) {
+    inline types::u32 program_id(void) {
       return this->shader.program_id();
     }
   private:
     rendering::Shader shader;
-    u32 uniform_model_transform;
-    u32 uniform_perspective_transform;
+    types::u32 uniform_model_transform;
+    types::u32 uniform_perspective_transform;
   };
 }

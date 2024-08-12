@@ -47,11 +47,33 @@ namespace display {
     Window(int width, int height, const std::string &name, int gl_major_version, int gl_minor_version, utils::Logger &logger, Window &share, bool fullscreen = false, GLFWmonitor* monitor = glfwGetPrimaryMonitor());
 
     /**
+     * @brief swaps buffers. Does not take into account target fps and vsync. Simply a wrapper for glfwSwapBuffers(window).
+     */
+    void swap_buffers_glfw(void) {
+      glfwSwapBuffers(this->_window);
+      return;
+    }
+
+    /**
      * @brief Toggles the window to fullscreen onto the currently set monitor.
      * @param borderless: Whether the fullscreen window should be borderless.
      */
     void fullscreen(bool borderless = true) {
-      glfwSetWindowMonitor(this->_window, this->_monitor, 0, 0, 0, 0, GLFW_DONT_CARE);
+      if(!this->_fullscreen) {
+        glfwSetWindowMonitor(this->_window, this->_monitor, 0, 0, 0, 0, GLFW_DONT_CARE);
+        this->_fullscreen = true;
+      }
+    }
+
+    /**
+     * @brief Change the monitor of the window. If in fullscreen mode, will set the window to fullscreen on the other window.
+     * @param monitor: The monitor to change the window to.
+     */
+    void change_monitor(GLFWmonitor* monitor) {
+      this->_monitor = monitor;
+      if (this->_fullscreen) {
+        glfwSetWindowMonitor(this->_window, this->_monitor, 0, 0, 0, 0, GLFW_DONT_CARE);
+      }
     }
 
     /**
@@ -81,6 +103,32 @@ namespace display {
     inline GLFWwindow* window(void) {
       return this->_window;
     }
+    inline int gl_major_version(void) {
+      return this->_gl_major_version;
+    }
+    inline int gl_minor_version(void) {
+      return this->_gl_minor_version;
+    }
+    inline int width(void) {
+      return this->_width;
+    }
+    inline int height(void) {
+      return this->_height;
+    }
+    inline std::string name(void) {
+      return this->_name;
+    }
+
+    inline Window* linked_window(void) {
+      return this->_linked_window;
+    }
+    inline GLFWmonitor* monitor(void) {
+      return this->_monitor;
+    }
+
+    inline bool is_fullscreen(void) {
+      return this->_fullscreen;
+    }
   private:
     GLFWwindow* _window = NULL;
     int _gl_major_version = 0;
@@ -93,6 +141,9 @@ namespace display {
     GLFWmonitor* _monitor = NULL;
 
     bool _fullscreen = false;
+    bool _vsync = true;
+    int _target_fps = 60;
+    int _swap_interval = 1;
   };
 
   /**
