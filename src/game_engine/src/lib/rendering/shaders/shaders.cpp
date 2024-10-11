@@ -6,7 +6,6 @@
 
 // LIBS
 #include "game_engine/src/lib/defines/typedefs.hpp"
-#include "game_engine/src/lib/utils/logging.hpp"
 #include "game_engine/src/lib/utils/error_handling.hpp"
 
 // EXTERN LIBS

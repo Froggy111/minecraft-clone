@@ -1,7 +1,6 @@
 #pragma once
 
 // LIBS
-#include "game_engine/src/lib/utils/logging.hpp"
 #include "game_engine/src/lib/defines/config.hpp"
 #include "game_engine/src/lib/utils/time.hpp"
 
@@ -10,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <chrono>
+#include "spdlog/spdlog.h"
 
 namespace utils {
   void make_crash_file(std::string crash_dir, std::string crash_contents) {
@@ -31,9 +31,10 @@ namespace utils {
    * @param func_name: Name of function. Use the __PRETTY_FUNCTION__ macro.
    */
   void panic(std::string err_msg, std::string func_name) {
-    std::cout << std::format("Error raised by {}: {}\n", func_name, err_msg) << std::endl;;
+    spdlog::critical(std::format("Panic raised by {}: {}\n", func_name, err_msg));
+
     #ifdef PANIC_MAKE_CRASH_FILE
-    make_crash_file(PANIC_LOGDIR, std::format("Error raised by {}: {}\n", func_name, err_msg));
+    make_crash_file(PANIC_LOGDIR, std::format("Panic raised by {}: {}\n", func_name, err_msg));
     #endif
     exit(EXIT_FAILURE);
     return;

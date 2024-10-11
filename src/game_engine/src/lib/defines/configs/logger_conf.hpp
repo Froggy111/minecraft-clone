@@ -2,6 +2,8 @@
  * Compile time logger config.
  * Undefine the logger levels to suppress logging to reduce overhead
  */
+
+#define LOGGER_ENABLE_TRACE
 #define LOGGER_ENABLE_DEBUG
 #define LOGGER_ENABLE_INFO
 #define LOGGER_ENABLE_NOTICE

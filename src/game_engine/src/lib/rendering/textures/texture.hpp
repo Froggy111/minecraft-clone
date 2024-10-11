@@ -11,7 +11,7 @@
 // EXTERNAL LIBS
 #include <string>
 #define STB_IMAGE_IMPLEMENTATION
-#include "game_engine/src/lib/external/stb_image.h"
+#include "external/stb_image.h"
 
 namespace rendering {
   /**

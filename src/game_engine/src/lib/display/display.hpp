@@ -9,11 +9,11 @@
 // LIBS
 #include "game_engine/src/lib/defines/typedefs.hpp"
 #include "game_engine/src/lib/defines/config.hpp"
-#include "game_engine/src/lib/utils/logging.hpp"
 
 // EXTERNAL LIBS
 #include <string>
 #include <vector>
+#include "spdlog/spdlog.h"
 
 namespace display {
   class Window {
@@ -26,11 +26,10 @@ namespace display {
      * @param name: Name of window to create.
      * @param gl_major_version: The major version of OpenGL context to use for this window. Game is developed with major version 4.
      * @param gl_minor_version: The minor version of OpenGL context to use for this window. Game is developed with minor version 6.
-     * @param logger: The logger to output errors and information to.
      * @param fullscreen: Whether to start the window in fullscreen. Defaults to false.
      * @param monitor: The GLFW monitor this window fullscreens to. Defaults to primary monitor. Will crash the program if null.
      */
-    Window(int width, int height, const std::string &name, int gl_major_version, int gl_minor_version, utils::Logger &logger, bool fullscreen = false, GLFWmonitor* monitor = glfwGetPrimaryMonitor());
+    Window(int width, int height, const std::string &name, int gl_major_version, int gl_minor_version, bool fullscreen = false, GLFWmonitor* monitor = glfwGetPrimaryMonitor());
     /**
      * @brief Create a window using a GL context from another window, and in fullscreen on a selected monitor.
      * NOTE: Does NOT switch context to window. Call .use() to switch context to this window.
@@ -39,12 +38,13 @@ namespace display {
      * @param name: Name of window to create.
      * @param gl_major_version: The major version of OpenGL context to use for this window. Game is developed with major version 4.
      * @param gl_minor_version: The minor version of OpenGL context to use for this window. Game is developed with minor version 6.
-     * @param logger: The logger to output errors and information to.
      * @param share: Another window to share an OpenGL context with.
      * @param fullscreen: Whether to start the window in fullscreen. Defaults to false.
      * @param monitor: The GLFW monitor this window fullscreens to. Defaults to primary monitor. Will crash the program if null.
      */
-    Window(int width, int height, const std::string &name, int gl_major_version, int gl_minor_version, utils::Logger &logger, Window &share, bool fullscreen = false, GLFWmonitor* monitor = glfwGetPrimaryMonitor());
+    Window(int width, int height, const std::string &name, int gl_major_version, int gl_minor_version, Window &share, bool fullscreen = false, GLFWmonitor* monitor = glfwGetPrimaryMonitor());
+
+    ~Window(void);
 
     /**
      * @brief swaps buffers. Does not take into account target fps and vsync. Simply a wrapper for glfwSwapBuffers(window).
@@ -150,15 +150,13 @@ namespace display {
    * @brief Wrapper for initialising glew, with error checking included.
    * Will crash program on error.
    * Should be called before any OpenGL functions are used.
-   * @param logger: Logger to log success/failure to.
    */
-  void init_glew(utils::Logger &logger);
+  void init_glew();
 
   /**
    * @brief Wrapper for initialising glfw, with error checking included.
    * Will crash program on error.
    * Should be called before any GLFW functions are used.
-   * @param logger: Logger to log success/failure to.
    */
-  void init_glfw(utils::Logger &logger);
+  void init_glfw();
 }

@@ -148,8 +148,8 @@ bool init_opengl() {
 
 bool init_buffers() {
   glGenVertexArrays(1, &gl_VAO);
-  glGenBuffers(1, &gl_VBO);
   glBindVertexArray(gl_VAO);
+  glGenBuffers(1, &gl_VBO);
   glBindBuffer(GL_ARRAY_BUFFER, gl_VBO);
   return true;
 }
