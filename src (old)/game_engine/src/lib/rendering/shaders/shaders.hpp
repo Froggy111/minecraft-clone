@@ -31,7 +31,7 @@ namespace rendering {
     Shader(std::vector<std::string> const &vert_shader_paths, std::vector<std::string> const &frag_shader_paths, types::u32 error_size = SHADER_DEFAULT_ERROR_SIZE);
     Shader(std::vector<std::string> const &vert_shader_paths, std::vector<std::string> const &geom_shader_paths, std::vector<std::string> const &frag_shader_paths, types::u32 error_size = SHADER_DEFAULT_ERROR_SIZE);
     Shader(std::vector<std::string> const &comp_shader_paths, types::u32 error_size = SHADER_DEFAULT_ERROR_SIZE);
-    inline void use(void) {
+    inline void bind(void) {
       glUseProgram(_program_id);
       return;
     }
