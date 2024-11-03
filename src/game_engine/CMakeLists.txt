@@ -1,1 +1,1 @@
-add_library(game_engine game_engine.cpp game_engine.cppm)
+add_library(game_engine game_engine.ixx game_engine.cpp)
