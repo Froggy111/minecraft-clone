@@ -1,7 +1,7 @@
 # minecraft-clone
 Funny minecraft clone project
 
-To build:
+To build: (The default is debug, check CMakePresets.json for more options)
 ```
 mkdir build
 cd build
@@ -19,7 +19,7 @@ In ${PROJECT_ROOT}.vscode/settings.json, set:
   "clangd.path": "path/to/clangd-for-modules"
 }
 ```
-In ${PROJECT_ROOT}.clangd:
+In ${PROJECT_ROOT}/clangd:
 ```
 CompileFlags:
   Add:
@@ -27,8 +27,17 @@ CompileFlags:
     - -fmodules
     - -Wall
     - -Wextra
-  CompilationDatabase: ./build/debug # change this to whatever build profile you are using
+  CompilationDatabase: ./build/clangd
 ```
+Inside ${PROJECT_ROOT}/build, run: (**make sure** clang and clang++ are in your PATH)
+```
+cmake .. --preset=clangd
+```
+You may need to build the project with preset clangd:
+```
+cmake --build clangd
+```
+And intellisense should work now! (even with other compilers)
 
 
 TODO:

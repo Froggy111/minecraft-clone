@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Add module support
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   message(STATUS "Using GCC")
-  set(DEFAULT_CMAKE_CXX_FLAGS "-fmodules-ts")
+  set(DEFAULT_CMAKE_CXX_FLAGS "-fmodules-ts") # This does not work with clangd!
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   message(STATUS "Using Clang")
   set(DEFAULT_CMAKE_CXX_FLAGS "-fmodules")
