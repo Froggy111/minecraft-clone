@@ -1,0 +1,93 @@
+{
+  "version": 9,
+  "configurePresets": [
+    {
+      "name": "user-default",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    },
+    {
+      "name": "user-debug",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    },
+    {
+      "name": "user-clangd",
+      "inherits": "clangd",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    },
+    {
+      "name": "user-release",
+      "inherits": "release",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    },
+    {
+      "name": "user-relwithdebinfo",
+      "inherits": "relwithdebinfo",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    },
+    {
+      "name": "user-profilefast",
+      "inherits": "profilefast",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    },
+    {
+      "name": "user-profilequality",
+      "inherits": "profilequality",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "user-default",
+      "configurePreset": "user-default",
+      "jobs": 0
+    },
+    {
+      "name": "user-debug",
+      "configurePreset": "user-debug",
+      "jobs": 0
+    },
+    {
+      "name": "user-release",
+      "configurePreset": "user-release",
+      "jobs": 0
+    },
+    {
+      "name": "user-relwithdebinfo",
+      "configurePreset": "user-relwithdebinfo",
+      "jobs": 0
+    },
+    {
+      "name": "user-profilefast",
+      "configurePreset": "user-profilefast",
+      "jobs": 0
+    },
+    {
+      "name": "user-profilequality",
+      "configurePreset": "user-profilequality",
+      "jobs": 0
+    }
+  ]
+}

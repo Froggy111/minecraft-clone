@@ -1,18 +1,23 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.30)
+set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "0e5b6991-d74f-4b3d-a41c-cf096e0b2508")
+set(CMAKE_CXX_MODULE_STD ON)
+set(CMAKE_CXX_FLAGS "-stdlib=libc++") # Necessary to put before defining project!
+
 project(Minecraft, CXX)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS ON)
 
 # Add module support
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-  message(STATUS "Using GCC")
-  set(DEFAULT_CMAKE_CXX_FLAGS "-fmodules-ts") # This does not work with clangd!
+message(STATUS "Using GCC")
+set(DEFAULT_CMAKE_CXX_FLAGS "-fmodules-ts") # This does not work with clangd!
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-  message(STATUS "Using Clang")
-  set(DEFAULT_CMAKE_CXX_FLAGS "-fmodules")
+message(STATUS "Using Clang")
+set(DEFAULT_CMAKE_CXX_FLAGS "-stdlib=libc++")
 else()
-  message(STATUS "Using an unknown compiler: ${CMAKE_CXX_COMPILER_ID}")
+message(STATUS "Using an unknown compiler: ${CMAKE_CXX_COMPILER_ID}")
 endif()
 set(CMAKE_CXX_SCAN_FOR_MODULES ON)
 
@@ -25,7 +30,6 @@ set(CMAKE_THREAD_LIBS_INIT "pthread")
 
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "Build flags: ${CMAKE_CXX_FLAGS}")
-
 
 # EXTENRAL LIBS
 # OpenGL
