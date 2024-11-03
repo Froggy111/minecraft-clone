@@ -27,8 +27,6 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "ProfilingMaxOpt")
   set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_MAXOPT}")
 endif()
 
-add_subdirectory("src")
-
 # EXTENRAL LIBS
 # OpenGL
 set(OpenGL_GL_PREFERENCE GLVND)
@@ -46,3 +44,5 @@ message(STATUS "SDL2 found at ${SDL2_INCLUDE_DIRS}")
 find_package(glfw3 REQUIRED)
 # SPDLog
 find_package(spdlog REQUIRED)
+
+add_subdirectory("src")

@@ -1,9 +1,9 @@
-add_subdirectory("engine")
+add_subdirectory("game_engine")
 add_subdirectory("mods")
 add_subdirectory("libs")
 
 add_executable(main main.cpp)
-target_link_libraries(main PRIVATE engine)
+target_link_libraries(main PRIVATE game_engine)
 target_link_libraries(main PRIVATE mods)
 target_link_libraries(main PRIVATE OpenGL::OpenGL)
 target_link_libraries(main PRIVATE GLEW::GLEW)

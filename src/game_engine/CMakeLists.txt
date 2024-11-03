@@ -1,0 +1,1 @@
+add_library(game_engine game_engine.cpp game_engine.cppm)
