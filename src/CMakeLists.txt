@@ -1,3 +1,12 @@
 add_subdirectory("engine")
 add_subdirectory("mods")
 add_subdirectory("libs")
+
+add_executable(main main.cpp)
+target_link_libraries(main PRIVATE engine)
+target_link_libraries(main PRIVATE mods)
+target_link_libraries(main PRIVATE OpenGL::GL)
+target_link_libraries(main PRIVATE GLEW::GLEW)
+target_link_libraries(main PRIVATE glm::glm)
+target_link_libraries(main PRIVATE glfw)
+target_link_libraries(main PRIVATE spdlog::spdlog)
