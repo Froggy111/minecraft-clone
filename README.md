@@ -43,7 +43,7 @@ If you get an error from clangd: PCH file uses an older PCH format that is no lo
 You need to build the same version of clang as in the clangd-for-modules repo. Follow clang build instructions in the llvm project.
 Make a copy of CMakeUserPresetsTemplate.json and rename it to CMakeUserPresets.json, and replace the clang and clang++ with the path to the built clang and clang++.
 Append the preset names with "user-" (without the quotes) when generating CMake configuration.
-Intellisense should work now (with other compilers too!)
+After importing a module, the project needs to be recompiled (under the clangd profile) and the clangd language server restarted (quite annoying, but oh well).
 
 NOTE: Clang or MSVC (untested) **MUST** be used for this project! Until gcc supports ```import std;``` at least.
 
