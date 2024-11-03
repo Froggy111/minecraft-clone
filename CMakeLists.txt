@@ -1,32 +1,31 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.25)
 project(Minecraft, CXX)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_EXPERIMENTAL_CXX_MODULES ON)
 
-set(DEFAULT_BUILD_TYPE Release)
+# Add module support
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  message(STATUS "Using GCC")
+  set(DEFAULT_CMAKE_CXX_FLAGS "-fmodules-ts")
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  message(STATUS "Using Clang")
+  set(DEFAULT_CMAKE_CXX_FLAGS "-fmodules")
+else()
+  message(STATUS "Using an unknown compiler: ${CMAKE_CXX_COMPILER_ID}")
+endif()
+set(CMAKE_CXX_SCAN_FOR_MODULES ON)
+
+# Other default flags
+set(DEFAULT_CMAKE_CXX_FLAGS "${DEFAULT_CMAKE_CXX_FLAGS} -fno-rtti")
+set(CMAKE_CXX_FLAGS "${DEFAULT_CMAKE_CXX_FLAGS} ${PRESET_CMAKE_CXX_FLAGS}")
+
+# Thread lib (to get it working with clang)
+set(CMAKE_THREAD_LIBS_INIT "pthread")
 
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "Build flags: ${CMAKE_CXX_FLAGS}")
 
-if(NOT CMAKE_BUILD_TYPE)
-  message(STATUS "No build type specified. Defaulting to ${DEFAULT_BUILD_TYPE}")
-  set(CMAKE_BUILD_TYPE DEFAULT_BUILD_TYPE)
-endif()
-
-set(CMAKE_CXX_FLAGS_DEBUG "-g -O1 -DDEBUG -Wall -Wextra -Werror")
-set(CMAKE_CXX_FLAGS_RELEASE "-DNDEBUG -O3 -march=native -funroll-loops -flto")
-set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g -DNDEBUG")
-set(CMAKE_CXX_FLAGS_MINSIZEREL "-Os -DNDEBUG")
-
-# custom build types for performance profiling
-set(CMAKE_CXX_FLAGS_FAST "-DPROFILING -O2 -march=native -funroll-loops")
-set(CMAKE_CXX_FLAGS_MAXOPT "-DPROFILING -O3 -march=native -funroll-loops -flto -ffast-math")
-if(CMAKE_BUILD_TYPE STREQUAL "ProfilingFast")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_FAST}")
-elseif(CMAKE_BUILD_TYPE STREQUAL "ProfilingMaxOpt")
-  set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_MAXOPT}")
-endif()
 
 # EXTENRAL LIBS
 # OpenGL

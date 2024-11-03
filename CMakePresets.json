@@ -1,0 +1,103 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default (debug)",
+      "generator": "Ninja",
+      "binaryDir": "build/default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+        "PRESET_CMAKE_CXX_FLAGS": "-g -DDEBUG -O1 -Wall -Wextra"
+      }
+    },
+    {
+      "name": "debug",
+      "displayName": "Debug",
+      "generator": "Ninja",
+      "binaryDir": "build/debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+        "PRESET_CMAKE_CXX_FLAGS": "-g -DDEBUG -O1 -Wall -Wextra"
+      }
+    },
+    {
+      "name": "release",
+      "displayName": "Release",
+      "generator": "Ninja",
+      "binaryDir": "build/release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+        "PRESET_CMAKE_CXX_FLAGS": "-DNDEBUG -O3 -march=native -funroll-loops -flto"
+      }
+    },
+    {
+      "name": "relwithdebinfo",
+      "displayName": "Release with debug info",
+      "generator": "Ninja",
+      "binaryDir": "build/releasewithdebinfo",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+        "PRESET_CMAKE_CXX_FLAGS": "-g -DNDEBUG -O2 -march=native -funroll-loops -flto"
+      }
+    },
+    {
+      "name": "profilefast",
+      "displayName": "Profile performance with fast compile optimisations",
+      "generator": "Ninja",
+      "binaryDir": "build/profilefast",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+        "CMAKE_CXX_FLAGS": "-g -DDEBUG -DPROFILE -O2 -march=native -funroll-loops"
+      }
+    },
+    {
+      "name": "profilequality",
+      "displayName": "Profile performance quality compile optimisations",
+      "generator": "Ninja",
+      "binaryDir": "build/profilequality",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+        "CMAKE_CXX_FLAGS": "-g -DNDEBUG -DPROFILE -O3 -march=native -funroll-loops -fflto"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "configurePreset": "debug",
+      "jobs": 0
+    },
+    {
+      "name": "debug",
+      "configurePreset": "debug",
+      "jobs": 0
+    },
+    {
+      "name": "release",
+      "configurePreset": "release",
+      "jobs": 0
+    },
+    {
+      "name": "relwithdebinfo",
+      "configurePreset": "relwithdebinfo",
+      "jobs": 0
+    },
+    {
+      "name": "profilefast",
+      "configurePreset": "profilefast",
+      "jobs": 0
+    },
+    {
+      "name": "profilequality",
+      "configurePreset": "profilequality",
+      "jobs": 0
+    }
+  ]
+}
