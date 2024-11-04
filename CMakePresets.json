@@ -28,19 +28,6 @@
       }
     },
     {
-      "name": "clangd",
-      "displayName": "Generate Clangd compile_commands.json",
-      "generator": "Ninja",
-      "binaryDir": "build/clangd",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
-        "PRESET_CMAKE_CXX_FLAGS": "-g -DDEBUG -O1 -Wall -Wextra",
-        "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++"
-      }
-    },
-    {
       "name": "release",
       "displayName": "Release",
       "generator": "Ninja",
